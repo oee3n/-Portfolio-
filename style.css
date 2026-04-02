@@ -578,7 +578,7 @@ body[dir="rtl"] .overlay {
 
 .footer-wrap {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 18px;
   align-items: center;
 }
