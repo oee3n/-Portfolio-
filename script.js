@@ -63,7 +63,7 @@ function applyTheme() {
   } else {
     body.classList.add('light-mode');
     body.classList.remove('dark-mode');
-    themeToggle.textContent = '🌙';
+    themeToggle.innerHTML = '<i class="bi bi-moon-fill" style="color: #ffde4b"></i>';
   }
 }
 
