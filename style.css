@@ -521,19 +521,27 @@ body.light-mode .chip-group span {
   border-radius: 24px;
   overflow: hidden;
   cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1;
+}
+
+.showcase-grid .showcase-item:hover {
+  transform: scale(1.15);
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
 }
 
 .showcase-item img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  transition: 0.4s ease;
+  transition: filter 0.4s ease;
   filter: blur(1.5px);
 }
 
 .showcase-item:hover img {
   filter: blur(0);
-  transform: scale(1.05);
 }
 
 .overlay {
@@ -876,4 +884,47 @@ body[dir="rtl"] .overlay {
     padding: 14px;
     font-size: 0.9rem;
   }
+}
+.course-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1;
+}
+
+.course-card:hover {
+  transform: scale(1.15);
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.course-card .cert-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.course-card:hover .cert-image {
+  transform: scale(1.05);
+}
+
+.course-card .course-body {
+  padding: 20px;
+}
+
+.course-card .course-body h3 {
+  margin-bottom: 6px;
+}
+
+.course-card .course-body p {
+  margin-bottom: 12px;
+  opacity: 0.75;
+  font-size: 0.9rem;
+}
+.showcase-grid {
+  overflow: visible;
 }
