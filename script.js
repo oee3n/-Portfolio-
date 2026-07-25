@@ -1,6 +1,7 @@
 const body = document.body;
 const langToggle = document.getElementById('langToggle');
 const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('i');
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
 
@@ -34,19 +35,26 @@ const translations = {
   }
 };
 
+const translatedElementIds = [
+  'logoName',
+  'heroName',
+  'heroTitle',
+  'heroDescription',
+  'heroSideText',
+  'aboutText',
+  'footerText',
+];
+
 function applyLanguage(lang) {
   currentLang = lang;
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
 
-  document.getElementById('logoName').textContent = translations[lang].logoName;
-  document.getElementById('heroName').textContent = translations[lang].heroName;
-  document.getElementById('heroTitle').textContent = translations[lang].heroTitle;
-  document.getElementById('heroDescription').textContent = translations[lang].heroDescription;
-  document.getElementById('heroSideText').textContent = translations[lang].heroSideText;
-  document.getElementById('aboutText').textContent = translations[lang].aboutText;
-  document.getElementById('footerText').textContent = translations[lang].footerText;
+  translatedElementIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = translations[lang][id];
+  });
 
   document.querySelectorAll('[data-en][data-ar]').forEach((el) => {
     el.textContent = el.getAttribute(`data-${lang}`);
@@ -56,15 +64,10 @@ function applyLanguage(lang) {
 }
 
 function applyTheme() {
-  if (darkMode) {
-    body.classList.add('dark-mode');
-    body.classList.remove('light-mode');
-    themeToggle.textContent = '☀';
-  } else {
-    body.classList.add('light-mode');
-    body.classList.remove('dark-mode');
-    themeToggle.innerHTML = '<i class="bi bi-moon-fill" style="color: #ffde4b"></i>';
-  }
+  body.classList.toggle('dark-mode', darkMode);
+  body.classList.toggle('light-mode', !darkMode);
+  themeIcon.classList.toggle('bi-brightness-high', darkMode);
+  themeIcon.classList.toggle('bi-moon-fill', !darkMode);
 }
 
 langToggle.addEventListener('click', () => {
@@ -96,6 +99,5 @@ const observer = new IntersectionObserver(
 );
 
 document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
-// document.addEventListener('contextmenu', e => e.preventDefault());
 applyLanguage('en');
 applyTheme();
